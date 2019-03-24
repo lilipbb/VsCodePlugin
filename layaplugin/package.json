@@ -1,0 +1,79 @@
+{
+	"name": "pbb",
+	"displayName": "laya更新资源插件",
+	"description": "开发laya时更新fairygui和unity资源",
+	"publisher":"lilipbb",
+	"version": "0.0.1",
+	"repository":"",
+	"engines": {
+		"vscode": "^0.0.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onCommand:pbb.createscene"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "pbb.update",
+				"title": "更新资源"
+			},
+			{
+				"command": "pbb.createscene",
+				"title": "创建场景"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "pbb.update",
+				"key": "ctrl+f8",
+				"mac": "cmd+f8",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "pbb.createscene",
+				"key": "ctrl+f9",
+				"mac": "cmd+f9",
+				"when": "editorTextFocus"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "pbb.update",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+                {
+                    "command": "pbb.update",
+					"group": "navigation"
+				},
+				{
+                    "command": "pbb.createscene",
+					"group": "navigation",
+					"when": "resourceFilename == scenes"
+                }
+            ]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
